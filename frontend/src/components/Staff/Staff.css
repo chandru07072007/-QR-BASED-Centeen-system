@@ -1,0 +1,396 @@
+/* Staff Dashboard Styles */
+
+.staff-container {
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+.staff-header {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.staff-header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.staff-tabs {
+    background: white;
+    display: flex;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 0 20px;
+}
+
+.tab-btn {
+    padding: 15px 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #FF6B35;
+}
+
+.tab-btn.active {
+    color: #FF6B35;
+    border-bottom-color: #FF6B35;
+}
+
+.staff-content {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Menu Management */
+.menu-management {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.items-table {
+    overflow-x: auto;
+}
+
+.items-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th {
+    background: #f8f9fa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.items-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.available {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: #4ECDC4;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #3db8af;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* Orders Management */
+.orders-management {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.orders-management h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+}
+
+.orders-list {
+    display: grid;
+    gap: 20px;
+}
+
+.order-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 5px solid #FF6B35;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.order-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.payment-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.payment-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.payment-badge.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.payment-badge.failed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.order-details {
+    margin-bottom: 15px;
+}
+
+.order-details p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.order-items {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.order-items ul {
+    margin: 10px 0 0 20px;
+    color: #666;
+}
+
+.order-items li {
+    margin: 5px 0;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.status-select {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: #FF6B35;
+}
+
+/* QR Management */
+.qr-management {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qr-management h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.qr-generator {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.qr-generator .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.qr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.qr-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.qr-card h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.qr-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+/* Menu Form */
+.modal-content.large {
+    max-width: 600px;
+}
+
+.menu-form {
+    margin-top: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.menu-form textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .staff-tabs {
+        overflow-x: auto;
+    }
+
+    .tab-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .section-header .btn {
+        width: 100%;
+    }
+
+    .items-table {
+        font-size: 14px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .qr-generator {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qr-generator .btn {
+        width: 100%;
+    }
+}

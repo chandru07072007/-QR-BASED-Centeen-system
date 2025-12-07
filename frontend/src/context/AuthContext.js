@@ -60,13 +60,20 @@ export const AuthProvider = ({ children }) => {
 
     // Logout function
     const logout = () => {
+        // Clear user-specific cart
+        const user = localStorage.getItem('user');
+        if (user) {
+            const userData = JSON.parse(user);
+            const cartKey = `cart_${userData._id || userData.id}`;
+            localStorage.removeItem(cartKey);
+        }
+
         setUser(null);
         setToken(null);
         setIsStaff(false);
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         localStorage.removeItem('isStaff');
-        localStorage.removeItem('cart');
     };
 
     // Check if user is authenticated

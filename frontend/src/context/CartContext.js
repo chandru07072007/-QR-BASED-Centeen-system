@@ -14,17 +14,60 @@ export const useCart = () => {
     return context;
 };
 
+// Helper function to get cart key for current user
+const getCartKey = () => {
+    const user = localStorage.getItem('user');
+    if (user) {
+        const userData = JSON.parse(user);
+        return `cart_${userData._id || userData.id}`;
+    }
+    return 'cart'; // Fallback for non-logged-in users
+};
+
 export const CartProvider = ({ children }) => {
-    // Initialize cart from localStorage
+    // Track current user to detect changes
+    const [currentUserId, setCurrentUserId] = useState(() => {
+        const user = localStorage.getItem('user');
+        if (user) {
+            const userData = JSON.parse(user);
+            return userData._id || userData.id;
+        }
+        return null;
+    });
+
+    // Initialize cart from localStorage using user-specific key
     const [cart, setCart] = useState(() => {
-        const savedCart = localStorage.getItem('cart');
+        const cartKey = getCartKey();
+        const savedCart = localStorage.getItem(cartKey);
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    // Save cart to localStorage whenever it changes
+    // Save cart to localStorage whenever it changes using user-specific key
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        const cartKey = getCartKey();
+        localStorage.setItem(cartKey, JSON.stringify(cart));
     }, [cart]);
+
+    // Monitor user changes and reload cart when user switches
+    useEffect(() => {
+        const checkUserChange = () => {
+            const user = localStorage.getItem('user');
+            const newUserId = user ? JSON.parse(user)._id || JSON.parse(user).id : null;
+
+            if (newUserId !== currentUserId) {
+                setCurrentUserId(newUserId);
+                // Load cart for new user
+                const cartKey = newUserId ? `cart_${newUserId}` : 'cart';
+                const savedCart = localStorage.getItem(cartKey);
+                setCart(savedCart ? JSON.parse(savedCart) : []);
+            }
+        };
+
+        // Check every 500ms for user changes (for login/logout detection)
+        const interval = setInterval(checkUserChange, 500);
+
+        return () => clearInterval(interval);
+    }, [currentUserId]);
 
     // Add item to cart
     const addToCart = (item) => {

@@ -673,11 +673,8 @@ This project is created for educational purposes.
 ## 📞 Support
 
 For issues or questions:
-1. Check the troubleshooting section
-2. Review console logs (browser and terminal)
-3. Verify all services are running
-4. Check MongoDB connection
 
+www.linkedin.com/in/chandru-p-393800374
 ---
 
 ## 🎉 Features to Add (Future Enhancements)

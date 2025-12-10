@@ -51,54 +51,72 @@ const Login = () => {
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <div className="auth-header">
-                    <h1>🍽️ Canteen System</h1>
-                    <h2>User Login</h2>
+        <div className="auth-split-container">
+            <div className="auth-image-section">
+                <div className="food-image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=1000&fit=crop"
+                        alt="Delicious Burger"
+                        className="food-image"
+                    />
                 </div>
+            </div>
 
-                {error && <div className="error-message">{error}</div>}
-
-                <form onSubmit={handleSubmit} className="auth-form">
-                    <div className="form-group">
-                        <label className="form-label">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="form-input"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
+            <div className="auth-form-section">
+                <div className="auth-form-wrapper">
+                    <div className="auth-header">
+                        <h2>Login</h2>
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            className="form-input"
-                            placeholder="Enter your password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
+                    {error && <div className="error-message">{error}</div>}
+
+                    <form onSubmit={handleSubmit} className="auth-form">
+                        <div className="form-group">
+                            <label className="form-label">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                className="form-input"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                className="form-input"
+                                placeholder="Password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-options">
+                            <label className="checkbox-label">
+                                <input type="checkbox" />
+                                <span>I agree terms & condition</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" className="btn btn-orange" disabled={loading}>
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
+                    </form>
+
+                    <div className="auth-links">
+                        <p>
+                            Already have an account? <Link to="/register">Sign up</Link>
+                        </p>
+                        <p>
+                            Are you staff? <Link to="/staff-login">Staff Login</Link>
+                        </p>
                     </div>
-
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? 'Logging in...' : 'Login'}
-                    </button>
-                </form>
-
-                <div className="auth-links">
-                    <p>
-                        Don't have an account? <Link to="/register">Register here</Link>
-                    </p>
-                    <p>
-                        Are you staff? <Link to="/staff-login">Staff Login</Link>
-                    </p>
                 </div>
             </div>
         </div>

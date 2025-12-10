@@ -74,8 +74,8 @@ const MyOrders = () => {
 
     if (loading) {
         return (
-            <div className="my-orders-container">
-                <div className="loading">
+            <div className="my-orders-container-new">
+                <div className="loading-new">
                     <div className="spinner"></div>
                     <p>Loading your orders...</p>
                 </div>
@@ -84,35 +84,55 @@ const MyOrders = () => {
     }
 
     return (
-        <div className="my-orders-container">
-            <header className="my-orders-header">
-                <button className="btn-back" onClick={() => navigate('/home')}>
-                    ← Back
-                </button>
-                <h1>My Orders</h1>
-                <div className="refresh-btn" onClick={fetchOrders}>
-                    🔄
+        <div className="my-orders-container-new">
+            {/* Header */}
+            <header className="my-orders-nav">
+                <div className="nav-content">
+                    <div className="nav-logo">
+                        <div className="logo-icon">🍽️</div>
+                        <div className="logo-text">
+                            <span className="logo-title">CANTEEN</span>
+                            <span className="logo-subtitle">RESTAURANT</span>
+                        </div>
+                    </div>
+                    <nav className="nav-menu">
+                        <button className="nav-link" onClick={() => navigate('/home')}>HOME</button>
+                        <button className="nav-link" onClick={() => navigate('/menu')}>MENU</button>
+                        <button className="nav-link active">MY ORDERS</button>
+                        <button className="nav-link" onClick={() => navigate('/cart')}>CART</button>
+                        <button className="btn-logout-new" onClick={() => { /* Add logout handler */ }}>
+                            LOGOUT
+                        </button>
+                    </nav>
                 </div>
             </header>
 
-            {error && <div className="error-message">{error}</div>}
+            {/* Page Header */}
+            <div className="my-orders-page-header">
+                <h1 className="my-orders-page-title">MY ORDERS</h1>
+                <button className="refresh-btn-new" onClick={fetchOrders}>
+                    🔄 Refresh
+                </button>
+            </div>
+
+            {error && <div className="error-message-new">{error}</div>}
 
             {/* Filter Buttons */}
-            <div className="order-filters">
+            <div className="order-filters-new">
                 <button
-                    className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
+                    className={`filter-btn-new ${filter === 'all' ? 'active' : ''}`}
                     onClick={() => setFilter('all')}
                 >
                     All Orders
                 </button>
                 <button
-                    className={`filter-btn ${filter === 'pending' ? 'active' : ''}`}
+                    className={`filter-btn-new ${filter === 'pending' ? 'active' : ''}`}
                     onClick={() => setFilter('pending')}
                 >
                     Pending
                 </button>
                 <button
-                    className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
+                    className={`filter-btn-new ${filter === 'completed' ? 'active' : ''}`}
                     onClick={() => setFilter('completed')}
                 >
                     Completed
@@ -121,22 +141,22 @@ const MyOrders = () => {
 
             {/* Orders List */}
             {filteredOrders.length === 0 ? (
-                <div className="empty-state">
+                <div className="empty-state-orders">
                     <h2>No orders found</h2>
                     <p>Start ordering from our menu!</p>
-                    <button className="btn btn-primary" onClick={() => navigate('/menu')}>
-                        Browse Menu
+                    <button className="btn-browse-menu" onClick={() => navigate('/menu')}>
+                        BROWSE MENU
                     </button>
                 </div>
             ) : (
-                <div className="orders-timeline">
+                <div className="orders-timeline-new">
                     {filteredOrders.map(order => (
-                        <div key={order._id} className="order-timeline-card">
+                        <div key={order._id} className="order-card-new">
                             {/* Order Header */}
-                            <div className="order-timeline-header">
-                                <div className="order-info">
-                                    <h3>Order #{order._id.slice(-6).toUpperCase()}</h3>
-                                    <p className="order-date">
+                            <div className="order-header-new">
+                                <div className="order-info-new">
+                                    <h3 className="order-number">ORDER #{order._id.slice(-6).toUpperCase()}</h3>
+                                    <p className="order-date-new">
                                         {new Date(order.created_at).toLocaleDateString('en-IN', {
                                             day: 'numeric',
                                             month: 'short',
@@ -146,71 +166,71 @@ const MyOrders = () => {
                                         })}
                                     </p>
                                 </div>
-                                <div className="order-amount">
-                                    <span className="amount-label">Total</span>
-                                    <span className="amount-value">₹{order.total_amount}</span>
+                                <div className="order-amount-new">
+                                    <span className="amount-label-new">Total</span>
+                                    <span className="amount-value-new">₹{order.total_amount}</span>
                                 </div>
                             </div>
 
                             {/* Status Timeline */}
-                            <div className="status-timeline">
-                                <div className={`timeline-step ${['placed', 'preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'placed' ? 'active' : ''}`}>
-                                    <div className="step-icon">📝</div>
-                                    <div className="step-label">Placed</div>
+                            <div className="status-timeline-new">
+                                <div className={`timeline-step-new ${['placed', 'preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'placed' ? 'active' : ''}`}>
+                                    <div className="step-icon-new">📝</div>
+                                    <div className="step-label-new">Placed</div>
                                 </div>
-                                <div className={`timeline-line ${['preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''}`}></div>
+                                <div className={`timeline-line-new ${['preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''}`}></div>
 
-                                <div className={`timeline-step ${['preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'preparing' ? 'active' : ''}`}>
-                                    <div className="step-icon">👨‍🍳</div>
-                                    <div className="step-label">Preparing</div>
+                                <div className={`timeline-step-new ${['preparing', 'ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'preparing' ? 'active' : ''}`}>
+                                    <div className="step-icon-new">👨‍🍳</div>
+                                    <div className="step-label-new">Preparing</div>
                                 </div>
-                                <div className={`timeline-line ${['ready', 'delivered'].includes(order.order_status) ? 'completed' : ''}`}></div>
+                                <div className={`timeline-line-new ${['ready', 'delivered'].includes(order.order_status) ? 'completed' : ''}`}></div>
 
-                                <div className={`timeline-step ${['ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'ready' ? 'active' : ''}`}>
-                                    <div className="step-icon">✅</div>
-                                    <div className="step-label">Ready</div>
+                                <div className={`timeline-step-new ${['ready', 'delivered'].includes(order.order_status) ? 'completed' : ''} ${order.order_status === 'ready' ? 'active' : ''}`}>
+                                    <div className="step-icon-new">✅</div>
+                                    <div className="step-label-new">Ready</div>
                                 </div>
-                                <div className={`timeline-line ${order.order_status === 'delivered' ? 'completed' : ''}`}></div>
+                                <div className={`timeline-line-new ${order.order_status === 'delivered' ? 'completed' : ''}`}></div>
 
-                                <div className={`timeline-step ${order.order_status === 'delivered' ? 'completed active' : ''}`}>
-                                    <div className="step-icon">🎉</div>
-                                    <div className="step-label">Delivered</div>
+                                <div className={`timeline-step-new ${order.order_status === 'delivered' ? 'completed active' : ''}`}>
+                                    <div className="step-icon-new">🎉</div>
+                                    <div className="step-label-new">Delivered</div>
                                 </div>
                             </div>
 
                             {/* Current Status Badge */}
-                            <div className="current-status" style={{ backgroundColor: getStatusColor(order.order_status) }}>
-                                <span className="status-icon">{getStatusIcon(order.order_status)}</span>
-                                <span className="status-text">{getStatusText(order.order_status)}</span>
+                            <div className="current-status-new" style={{ backgroundColor: getStatusColor(order.order_status) }}>
+                                <span className="status-icon-new">{getStatusIcon(order.order_status)}</span>
+                                <span className="status-text-new">{getStatusText(order.order_status)}</span>
                             </div>
 
                             {/* Order Items */}
-                            <div className="order-items-summary">
-                                <h4>Items ({order.items.length})</h4>
-                                <ul className="items-list">
+                            <div className="order-items-summary-new">
+                                <h4 className="items-header">Items ({order.items.length})</h4>
+                                <ul className="items-list-new">
                                     {order.items.map((item, idx) => (
                                         <li key={idx}>
-                                            <span className="item-name">{item.name}</span>
-                                            <span className="item-quantity">x{item.quantity}</span>
-                                            <span className="item-price">₹{item.price * item.quantity}</span>
+                                            <span className="item-name-new">{item.name}</span>
+                                            <span className="item-quantity-new">x{item.quantity}</span>
+                                            <span className="item-price-new">₹{item.price * item.quantity}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
                             {/* Additional Info */}
-                            <div className="order-additional-info">
+                            <div className="order-additional-info-new">
                                 {order.split_count > 1 && (
-                                    <div className="info-badge">
+                                    <div className="info-badge-new">
                                         👥 Split: {order.split_count} people (₹{order.per_person_amount} each)
                                     </div>
                                 )}
                                 {order.table_number && (
-                                    <div className="info-badge">
+                                    <div className="info-badge-new">
                                         🪑 Table: {order.table_number}
                                     </div>
                                 )}
-                                <div className={`info-badge payment-${order.payment_status}`}>
+                                <div className={`info-badge-new payment-${order.payment_status}`}>
                                     💳 Payment: {order.payment_status}
                                 </div>
                             </div>

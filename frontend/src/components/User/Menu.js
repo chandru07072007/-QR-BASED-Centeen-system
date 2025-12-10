@@ -80,39 +80,71 @@ const Menu = () => {
     }
 
     return (
-        <div className="menu-container">
+        <div className="menu-container-new">
             {/* Header */}
-            <header className="menu-header">
-                <button className="btn-back" onClick={() => navigate('/home')}>
-                    ← Back
-                </button>
-                <h1>Menu</h1>
-                <div className="header-actions">
-                    <button className="btn-icon" onClick={() => navigate('/my-orders')}>
-                        📋
-                    </button>
-                    <button className="btn-icon" onClick={() => navigate('/cart')}>
-                        🛒 ({getCartCount()})
-                    </button>
-                    <button className="btn-logout" onClick={handleLogout}>
-                        Logout
-                    </button>
+            <header className="menu-nav">
+                <div className="nav-content">
+                    <div className="nav-logo">
+                        <div className="logo-icon">🍽️</div>
+                        <div className="logo-text">
+                            <span className="logo-title">CANTEEN</span>
+                            <span className="logo-subtitle">RESTAURANT</span>
+                        </div>
+                    </div>
+                    <nav className="nav-menu">
+                        <button className="nav-link" onClick={() => navigate('/home')}>HOME</button>
+                        <a href="#menu" className="nav-link active">MENU</a>
+                        <button className="nav-link" onClick={() => navigate('/my-orders')}>MY ORDERS</button>
+                        <button className="nav-link" onClick={() => navigate('/cart')}>
+                            CART ({getCartCount()})
+                        </button>
+                        <button className="btn-logout-new" onClick={handleLogout}>
+                            LOGOUT
+                        </button>
+                    </nav>
                 </div>
             </header>
 
+            {/* Page Header */}
+            <div className="menu-page-header">
+                <h1 className="menu-page-title">APPETIZERS</h1>
+            </div>
+
             {/* Table Number Display (if from QR scan) */}
             {tableNumber && (
-                <div className="table-info">
+                <div className="table-info-new">
                     <p>📍 Table Number: <strong>{tableNumber}</strong></p>
                 </div>
             )}
 
+            {/* Filter and Sort Bar */}
+            <div className="menu-controls">
+                <div className="view-controls">
+                    <button className="view-btn">
+                        <span className="grid-icon">⊞</span>
+                    </button>
+                    <button className="view-btn active">
+                        <span className="list-icon">☰</span>
+                    </button>
+                    <span className="items-count">Items {filteredItems.length}</span>
+                </div>
+                <div className="sort-control">
+                    <label>Sort by</label>
+                    <select className="sort-select">
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Name: A to Z</option>
+                        <option>Name: Z to A</option>
+                    </select>
+                </div>
+            </div>
+
             {/* Category Filter */}
-            <div className="category-filter">
+            <div className="category-filter-new">
                 {categories.map(category => (
                     <button
                         key={category}
-                        className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
+                        className={`category-btn-new ${selectedCategory === category ? 'active' : ''}`}
                         onClick={() => setSelectedCategory(category)}
                     >
                         {category}
@@ -124,46 +156,37 @@ const Menu = () => {
             {error && <div className="error-message">{error}</div>}
 
             {/* Menu Items Grid */}
-            <div className="menu-grid">
+            <div className="menu-grid-new">
                 {filteredItems.map(item => (
-                    <div key={item._id} className="menu-card">
-                        <div className="menu-image-container">
+                    <div key={item._id} className="menu-card-new">
+                        <div className="menu-image-wrapper">
                             <img
                                 src={item.image_url}
                                 alt={item.name}
-                                className="menu-image"
+                                className="menu-image-new"
                                 onError={(e) => {
-                                    e.target.src = 'https://via.placeholder.com/300x200?text=Food+Image';
+                                    e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop';
                                 }}
                             />
                             {!item.is_available && (
-                                <div className="unavailable-badge">Out of Stock</div>
+                                <div className="unavailable-overlay">Out of Stock</div>
                             )}
                         </div>
 
-                        <div className="menu-content">
-                            <h3>{item.name}</h3>
-                            <p className="menu-description">{item.description}</p>
-                            <div className="menu-footer">
-                                <span className="menu-price">₹{item.price}</span>
-                                <span className="menu-category">{item.category}</span>
+                        <div className="menu-card-content">
+                            <h3 className="menu-item-name">{item.name}</h3>
+                            <div className="menu-rating">
+                                {'⭐'.repeat(5)}
                             </div>
+                            <p className="menu-item-price">₹{item.price}</p>
 
                             {item.is_available && (
-                                <div className="menu-actions">
-                                    <button
-                                        className="btn btn-outline"
-                                        onClick={() => handleAddToCart(item)}
-                                    >
-                                        Add to Cart
-                                    </button>
-                                    <button
-                                        className="btn btn-primary"
-                                        onClick={() => handleBuyNow(item)}
-                                    >
-                                        Buy Now
-                                    </button>
-                                </div>
+                                <button
+                                    className="btn-add-to-order"
+                                    onClick={() => handleAddToCart(item)}
+                                >
+                                    ADD TO ORDER
+                                </button>
                             )}
                         </div>
                     </div>
@@ -172,7 +195,7 @@ const Menu = () => {
 
             {/* Empty State */}
             {filteredItems.length === 0 && (
-                <div className="empty-state">
+                <div className="empty-state-new">
                     <p>No items found in this category</p>
                 </div>
             )}
@@ -180,7 +203,7 @@ const Menu = () => {
             {/* Floating Cart Button */}
             {getCartCount() > 0 && (
                 <button
-                    className="floating-cart-btn"
+                    className="floating-cart-btn-new"
                     onClick={() => navigate('/cart')}
                 >
                     🛒 View Cart ({getCartCount()})

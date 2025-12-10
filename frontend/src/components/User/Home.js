@@ -18,87 +18,76 @@ const Home = () => {
     };
 
     return (
-        <div className="home-container">
-            {/* Header */}
-            <header className="home-header">
-                <div className="header-content">
-                    <h1>🍽️ College Canteen</h1>
-                    <div className="header-actions">
-                        <button className="btn-icon" onClick={() => navigate('/my-orders')}>
-                            📋 My Orders
-                        </button>
-                        <button className="btn-icon" onClick={() => navigate('/cart')}>
-                            🛒 Cart ({getCartCount()})
-                        </button>
-                        <button className="btn-logout" onClick={handleLogout}>
-                            Logout
-                        </button>
+        <div className="home-container-new">
+            {/* Header Navigation */}
+            <header className="home-nav">
+                <div className="nav-content">
+                    <div className="nav-logo">
+                        <div className="logo-icon">🍽️</div>
+                        <div className="logo-text">
+                            <span className="logo-title">CANTEEN</span>
+                            <span className="logo-subtitle">RESTAURANT</span>
+                        </div>
                     </div>
+                    <nav className="nav-menu">
+                        <a href="#home" className="nav-link active">HOME</a>
+                        <a href="#about" className="nav-link">ABOUT US</a>
+                        <a href="#menu" className="nav-link" onClick={(e) => { e.preventDefault(); navigate('/menu'); }}>MENU</a>
+                        <a href="#orders" className="nav-link" onClick={(e) => { e.preventDefault(); navigate('/my-orders'); }}>MY ORDERS</a>
+                        <a href="#cart" className="nav-link" onClick={(e) => { e.preventDefault(); navigate('/cart'); }}>
+                            CART ({getCartCount()})
+                        </a>
+                        <button className="btn-logout-new" onClick={handleLogout}>
+                            LOGOUT
+                        </button>
+                    </nav>
                 </div>
             </header>
 
-            {/* Welcome Section */}
-            <div className="welcome-section">
-                <h2>Welcome, {user?.name}! 👋</h2>
-                <p>Enjoy delicious meals from our canteen</p>
-            </div>
+            {/* Hero Section */}
+            <section className="hero-section">
+                <div className="hero-content">
+                    <div className="hero-text">
+                        <h1 className="hero-title">
+                            BEST QUALITY<br />FOOD
+                        </h1>
+                        <p className="hero-description">
+                            Experience the finest dining with fresh ingredients and authentic flavors.
+                            Our expert chefs prepare every dish with passion and precision,
+                            ensuring you get the best quality food every time.
+                        </p>
+                        <button className="btn-book-table" onClick={() => navigate('/menu')}>
+                            BROWSE MENU
+                        </button>
+                    </div>
+                    <div className="hero-images">
+                        <div className="floating-ingredient tomato">🍅</div>
+                        <div className="floating-ingredient basil-1">🌿</div>
+                        <div className="floating-ingredient basil-2">🌿</div>
+                        <div className="floating-ingredient pepper">🌶️</div>
 
-            {/* Banner Section */}
-            <div className="banner-section">
-                <div className="banner-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800"
-                        alt="Canteen Banner"
-                        className="banner-image"
-                    />
-                    <div className="banner-overlay">
-                        <h3>Fresh & Delicious Food</h3>
-                        <p>Made with love, served with care</p>
+                        <img
+                            src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=400&fit=crop"
+                            alt="Pasta"
+                            className="food-img food-img-1"
+                        />
+                        <img
+                            src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&h=500&fit=crop"
+                            alt="Main Course"
+                            className="food-img food-img-2"
+                        />
+                        <img
+                            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=400&fit=crop"
+                            alt="Pizza"
+                            className="food-img food-img-3"
+                        />
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* Features */}
-            <div className="features-section">
-                <div className="feature-card">
-                    <div className="feature-icon">🍔</div>
-                    <h3>Quality Food</h3>
-                    <p>Fresh ingredients, hygienic preparation</p>
-                </div>
-                <div className="feature-card">
-                    <div className="feature-icon">⚡</div>
-                    <h3>Quick Service</h3>
-                    <p>Order ahead, skip the queue</p>
-                </div>
-                <div className="feature-card">
-                    <div className="feature-icon">💳</div>
-                    <h3>Easy Payment</h3>
-                    <p>UPI, Cards, and more</p>
-                </div>
-            </div>
-
-            {/* Main Action Button */}
-            <div className="action-section">
-                <button
-                    className="btn-large btn-primary"
-                    onClick={() => navigate('/menu')}
-                >
-                    🍽️ View Menu & Order Now
-                </button>
-            </div>
-
-            {/* Info Cards */}
-            <div className="info-section">
-                <div className="info-card">
-                    <h4>⏰ Timings</h4>
-                    <p>Mon - Sat: 8:00 AM - 6:00 PM</p>
-                    <p>Sunday: Closed</p>
-                </div>
-                <div className="info-card">
-                    <h4>📍 Location</h4>
-                    <p>Ground Floor, Main Building</p>
-                    <p>College Campus</p>
-                </div>
+            {/* Welcome Info */}
+            <div className="welcome-info">
+                <p>👋 Welcome back, <strong>{user?.name}</strong>!</p>
             </div>
         </div>
     );
